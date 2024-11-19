@@ -1,4 +1,5 @@
-<!-- O programa armazena os usuários em um documento externo com a extensão .txt -->
+
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -19,7 +20,20 @@
     </form>
     <?php
 
-    // Digitar PHP (1º Aqui)
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+        $nome = $_POST['nome'];
+        $senha = $_POST['senha'];
+
+        $arquivo = fopen('usuarios.txt', 'a');
+
+        $linha = $nome . ';' .$senha . '\n';
+
+        fwrite($arquivo, $linha);
+
+        fclose($arquivo);
+
+        echo "<p>Usuário cadastrado com sucesso</p>";
+    }
     
     ?>
 </body>
